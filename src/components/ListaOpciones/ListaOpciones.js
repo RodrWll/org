@@ -1,5 +1,5 @@
 import "./ListaOpciones.css"
-const ListaOpciones =()=>{
+const ListaOpciones =(props)=>{
     const equipos = [
         "Programación",
         "Front End",
@@ -12,10 +12,18 @@ const ListaOpciones =()=>{
     //metodo map array.map((elemento, indice, array) => { ... } )
     return <div className="lista-opciones">
         <label> Equipos </label>
-        <select>
-            {equipos.map((equipo,index) => {
-                return <option key={index}>{equipo}</option>//agregar key para que react no se confunda 
-            })}
+        <select
+            value={props.valor}
+            onChange={(e)=>{props.setValue(e.target.value)}}
+        >
+                <option value="" disabled defaultValue="" hidden>
+                    Seleccionar equipo
+                </option>
+                {equipos.map((equipo,index) => {
+                    return<option key={index} value={equipo}>
+                            {equipo}
+                        </option>//agregar key para que react no se confunda 
+                })}
         </select>
     </div>
 }
